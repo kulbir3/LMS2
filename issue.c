@@ -30,7 +30,7 @@ void issue_book() {
     while (fscanf(iss, "%d %s %s %s", &b.id, b.name, b.author, b.genre) == 4) {
         if (b.id == b_id) {
             found = 1;
-            fprintf(log, "User Id: %d Issue Book Id: %d (%s)\n", user_id, b.id, b.name);
+            fprintf(log,"%d %s %s %s %s\n",b.id,b.name,b.author,b.genre,u.email);
             printf("Book issue successfully: %s\n", b.name);
         } else {
             fprintf(iss1, "%d %s %s %s\n", b.id, b.name, b.author, b.genre);

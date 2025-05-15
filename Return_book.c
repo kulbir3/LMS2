@@ -1,50 +1,39 @@
-# include <stdio.h>
-# include "myfunctions.h"
+#include <stdio.h>
+#include "myfunctions.h"
 
-    void return_book(){
-        FILE *ptr = fopen("Book.txt","a");
-        FILE *iss = fopen("issue_log.txt","r");
-        FILE *iss1 = fopen("temp.txt","w");
-        if(ptr == NULL|| iss == NULL|| iss1 == NULL){
-            printf("Error opening file!\n");
-            return;
-        }
-        printf("Enter book id: ");
-        scanf("%d", &b.id);
+void return_book() {
+    FILE *iss = fopen("issue_log.txt", "r");
+    FILE *ret = fopen("Book.txt", "a");
+    FILE *temp = fopen("temp.txt", "w");
 
-        printf("Enter book name: ");
-        getchar();
-        scanf("%[^\n]",b.name);
-         
-        printf("Enter Author name: ");
-        getchar();
-        scanf("%[^\n]",b.author);
-
-        printf("Enter Genre: ");
-        getchar();
-        scanf("%[^\n]",b.genre);
-
-        fprintf(ptr,"%d %s %s %s",b.id,b.name,b.author,b.genre);
-
-        int id1;
-        int found = 0;
-        printf("Enter ID to return book: ");
-        scanf("%d",&id1);
-    
-        while(!feof(iss)){
-            fscanf(iss,"%d %d %s",&u.id,&b.id,b.name);
-            if(id1 != b.id){
-                printf("Book return!\n");
-                fprintf(iss1,"%d %d %s\n",u.id,b.id,b.name);
-                found = 1;
-            }
-        }
-
-
-        fclose(ptr);
-        fclose(iss);
-        fclose(iss1);
-
-        remove("issue_log.txt");
-        rename("temp.txt","issue_log.txt");
+    if (iss == NULL || ret == NULL || temp == NULL) {
+        printf("Error opening file!\n");
+        return;
     }
+
+    int id1, found = 0;
+    printf("Enter book ID to return: ");
+    scanf("%d", &id1);
+
+    while (fscanf(iss, "%d %s %s %s %s", &b.id, b.name, b.author, b.genre,u.email) == 5) {
+        if (id1 == b.id) {
+            fprintf(ret, "%d %s %s %s\n", b.id, b.name, b.author, b.genre);
+            found = 1;
+        } else {
+            fprintf(temp, "%d %s %s %s %s\n", b.id, b.name, b.author, b.genre, u.email);
+        }
+    }
+
+    if (found) {
+        printf("Book returned successfully!\n");
+    } else {
+        printf("Book ID %d not found in issue_log.\n", id1);
+    }
+
+    fclose(iss);
+    fclose(ret);
+    fclose(temp);
+
+    remove("issue_log.txt");
+    rename("temp.txt", "issue_log.txt");
+}

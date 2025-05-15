@@ -25,5 +25,5 @@ void add_book(){
      fprintf(ptr," %d %s  %s  %s\n",b.id, b.name, b.author, b.genre);
 
      fclose(ptr);
-     printf("Book added successfully.....");
+     printf("\nBook added successfully.....\n");
 }

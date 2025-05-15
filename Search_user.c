@@ -4,8 +4,8 @@
   void search_user(){
     FILE *ptr = fopen("user.txt","r");
     if(ptr == NULL){
-        printf("Error opening file!");
-        return;
+       printf("Error opening file!");
+       return;
     }
     int id1;
     int found = 0;
