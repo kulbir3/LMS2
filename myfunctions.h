@@ -24,5 +24,6 @@ typedef struct book{
       void search_user();
       void Exit();
       int user_exists(int user_id);
+      void get_time(char *buffer, size_t size);
 
       #endif
