@@ -19,11 +19,11 @@ typedef enum {
          int choice;
 
          while(1){
-            printf("\n Library Management System\n");
+            printf("\n <===Library Management System===>\n");
             printf(" 1.Add book\n 2.Add user\n 3.Display_info\n 4.Issue book\n 5.Return book\n");
             printf(" 6.Search book\n 7.Remove user \n 8.Search user\n");
             printf(" 9.Exit\n");
-            printf("Enter your choice: ");
+            printf("\nEnter your choice: ");
             scanf("%d",&choice);
             printf("\n");
              
