@@ -1,4 +1,5 @@
 # include <stdio.h>
+# include <stdlib.h>
 # include "myfunctions.h"
 
 void add_book(){
@@ -7,9 +8,9 @@ void add_book(){
     printf("Error!");
     return ;
   }
-     printf("Enter Book Id: ");
+     printf("Enter Book id: ");
      scanf("%d",&b.id);
-
+     
      printf("Enter Book name: ");
      getchar();
      scanf("%[^\n]",b.name);
@@ -22,7 +23,10 @@ void add_book(){
      getchar();
      scanf("%[^\n]",b.genre);
 
-     fprintf(ptr," %d %s  %s  %s\n",b.id, b.name, b.author, b.genre);
+     printf("Enter book copies: ");
+     scanf("%d",&b.cpy);
+
+     fprintf(ptr," %d %s  %s  %s %d\n",b.id, b.name, b.author, b.genre, b.cpy);
 
      fclose(ptr);
      printf("\nBook added successfully.....\n");

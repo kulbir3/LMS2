@@ -18,37 +18,39 @@ void issue_book() {
     scanf("%d", &b_id);
 
     FILE *iss = fopen("Book.txt", "r");
-    FILE *iss1 = fopen("temp.txt", "w");
+    FILE *temp = fopen("temp.txt","w");
     FILE *log = fopen("issue_log.txt", "a");
     FILE *log1 = fopen("history_log.txt","a");
 
-    if (iss == NULL || iss1 == NULL || log == NULL || log1 == NULL) {
+    if (iss == NULL || temp == NULL || log == NULL || log1 == NULL) {
         printf("Error opening file!\n");
         return;
     }
 
     int found = 0;
     get_time(buffer, sizeof(buffer));
-    while (fscanf(iss, "%d %s %s %s", &b.id, b.name, b.author, b.genre) == 4) {
-        if (b.id == b_id) {
+    while (fscanf(iss, "%d %s %s %s %d", &b.id, b.name, b.author, b.genre, &b.cpy) == 5) {
+        if (b.id == b_id && b.cpy > 0){
             found = 1;
-            fprintf(log,"%d %s %s %s %s\n",b.id, b.name, b.author, b.genre, u.email);
-            fprintf(log1,"User id: %d Book: %s Issued time: %s\n",u.id, b.name, buffer);
+            b.cpy--;
+            fprintf(temp, "%d %s %s %s %d\n",b.id, b.name, b.author, b.genre, b.cpy);
+            fprintf(log, "%d %s %s %s %d\n",b.id, b.name, b.author, b.genre, u.id);
+            fprintf(log1, "User id: %d Book: %s Issued time: %s\n",u.id, b.name, buffer);
             printf("Book issue successfully: %s\n", b.name);
-        } else {
-            fprintf(iss1, "%d %s %s %s\n", b.id, b.name, b.author, b.genre);
+        }else{
+            fprintf(temp, "%d %s %s %s %d\n",b.id, b.name, b.author, b.genre, b.cpy);
         }
     }
 
     if (!found) {
-        printf("Book not found or already issue.\n");
+        printf("Book not found or already issued.\n");
     }
 
     fclose(iss);
-    fclose(iss1);
+    fclose(temp);
     fclose(log);
     fclose(log1);
-
+    
     remove("Book.txt");
     rename("temp.txt", "Book.txt");
 }

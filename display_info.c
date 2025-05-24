@@ -13,7 +13,7 @@
                 return;
             }
             while(fscanf(ptr,"%d %s %s %s",&b.id,b.name,b.author,b.genre) != EOF){
-                printf("ID: %d Name: %s Author: %s Genre: %s\n",b.id,b.name,b.author,b.genre);
+                printf("ID: %d Name: %s Author: %s Genre: %s Copies: %d\n",b.id, b.name, b.author, b.genre, b.cpy);
             }
             fclose(ptr);
         }

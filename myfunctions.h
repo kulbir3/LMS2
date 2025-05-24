@@ -3,7 +3,7 @@
 
 typedef struct book{
    char name[30],author[20],genre[100];
-   int id;
+   int id, cpy;
 }book;
 
  typedef struct user{

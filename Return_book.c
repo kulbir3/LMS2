@@ -8,24 +8,25 @@ void return_book() {
     FILE *log = fopen("history_log.txt","a");
 
     if (iss == NULL || ret == NULL || temp == NULL) {
-        printf("Error opening file!\n");
+        printf("Error opening file");
         return;
     }
 
-    int id1, found = 0;
-    printf("Enter book ID to return: ");
-    scanf("%d", &id1);
+    int id1, uid, found = 0;
+    printf("Enter book ID & Uid to return: ");
+    scanf("%d %d", &id1,&uid);
 
     char buffer[50];
     get_time(buffer, sizeof(buffer));
 
-    while (fscanf(iss, "%d %s %s %s %s", &b.id, b.name, b.author, b.genre,u.email) == 5) {
-        if (id1 == b.id) {
-            fprintf(ret, "%d %s %s %s\n", b.id, b.name, b.author, b.genre);
-            fprintf(log,"User id: %d Book: %s Return time: %s",u.id, b.name, buffer);
+    while (fscanf(iss, "%d %s %s %s %d", &b.id, b.name, b.author, b.genre, &u.id) == 5) {
+        if (id1 == b.id && uid == u.id) {
+            b.cpy++;
+            fprintf(ret, "%d %s %s %s %d\n", b.id, b.name, b.author, b.genre, b.cpy);
+            fprintf(log, "User id: %d Book: %s Return time: %s",u.id, b.name, buffer);
             found = 1;
         } else {
-            fprintf(temp, "%d %s %s %s %s\n", b.id, b.name, b.author, b.genre, u.email);
+            fprintf(temp, "%d %s %s %s %d \n", b.id, b.name, b.author, b.genre, u.id);
         }
     }
 
@@ -43,3 +44,4 @@ void return_book() {
     remove("issue_log.txt");
     rename("temp.txt", "issue_log.txt");
 }
+        
