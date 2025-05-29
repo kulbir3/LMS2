@@ -2,26 +2,29 @@
 # include "myfunctions.h"
 
 void add_book(){
+  FILE *ptr, *ptr1;
     int temp_id, temp_cpy;
-    char temp_na[300], temp_au[20],temp_ge[100],choice;
+    char temp_na[30], temp_au[20],temp_ge[100], choice, buf[256];
    
-    FILE *ptr1 = fopen("Book.txt","r");
+    ptr1 = fopen("Book.txt","r");
     if(ptr1 == NULL){
-      ptr1 = fopen("Book.txt","w");
+      ptr = fopen("Book.txt","w");
     }
 
      printf("Enter Book Id: ");
      scanf("%d",&b.id);
 
-     while(fscanf(ptr1, "%d %s %s %s %d",&temp_id, temp_na, temp_au, temp_ge, &temp_cpy) == 5){
-     if(b.id == temp_id){
-        printf("Book id already exist!\n");
-        fclose(ptr1);
-        return;
-       }
+     while(fgets(buf, sizeof(buf), ptr1)){
+      if(sscanf(buf, "Id:%d|Name:%[^|]|Author:%[^|]|Genre:%[^|]|Copies:%d",&temp_id, temp_na, temp_au, temp_ge, &temp_cpy) == 5){
+        if(b.id == temp_id){
+          printf("Book id already exist!\n");
+          fclose(ptr1);
+          return;
+       } 
      }
+  }
      
-     FILE *ptr = fopen("Book.txt","a");
+     ptr = fopen("Book.txt","a");
      if(ptr == NULL){
       printf("Error opening file!\n");
       return;

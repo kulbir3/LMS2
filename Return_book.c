@@ -22,21 +22,22 @@ void return_book() {
 
     while (fgets(buf, sizeof(buf), iss)){
         if(sscanf(buf, "Id:%d|Name:%[^|]|Author:%[^|]|Genre:%[^|]|UId:%d", &b.id, b.name, b.author, b.genre, &u.id) == 5){
-        if (id1 == b.id && uid == u.id){
-           found = 1;
-        } else {
+         if (id1 == b.id && uid == u.id){
+            found = 1;
+         } else {
             fprintf(temp, "Id:%d|Name:%s|Author:%s|Genre:%s|UId:%d\n", b.id, b.name, b.author, b.genre, u.id);
-        }
-    }
-}
+         }
+     }
+ }
     while(fgets(buf, sizeof(buf), ret)){
        if(sscanf(buf, "Id:%d|Name:%[^|]|Author:%[^|]|Genre:%[^|]|Copies:%d", &b.id, b.name, b.author, b.genre, &b.cpy) == 5){
-      if(id1 == b.id && found){
-        b.cpy++;
-      }
-      fprintf(ptr, "Id:%d|Name:%s|Author:%s|Genre:%s|Copies:%d\n",b.id, b.name, b.author, b.genre, b.cpy);
-    }
-}
+        if(id1 == b.id && found){
+          b.cpy++;
+       }
+        fprintf(ptr, "Id:%d|Name:%s|Author:%s|Genre:%s|Copies:%d\n",b.id, b.name, b.author, b.genre, b.cpy);
+     }
+
+ } 
 
     if (found) {
         fprintf(log, "User id: %d Book: %s Return time: %s\n", u.id, b.name, buffer);

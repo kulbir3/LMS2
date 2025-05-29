@@ -10,20 +10,27 @@
     }
     int id1;
     int found = 0;
+    char buf[256];
     printf("Enter ID to remove user: ");
     scanf("%d",&id1);
 
-    while(!feof(file)){
-        fscanf(file,"%d %s %s %d",&u.id,u.user_name,u.email,&u.number);
+    while(fgets(buf, sizeof(buf), file)){
+        if(sscanf(buf, "Id:%d|Name:%[^|]|Email:%[^|]|Number:%d",&u.id, u.user_name, u.email, &u.number) == 4){
         if(id1 != u.id){
-            printf("User removed!\n");
-            fprintf(file1,"%d %s %s %d\n",u.id,u.user_name,u.email,u.number);
             found = 1;
+            fprintf(file1, "Id:%d|Name:%s|Email:%s|Number:%d\n",u.id, u.user_name, u.email, u.number);
         }
     }
+}
     fclose(file);
     fclose(file1);
     
      remove("user.txt"); 
      rename("temp.txt","user.txt");
+
+     if(found){
+        printf("User removed!\n");
+     }else{
+        printf("User with %d Id not found.\n",u.id);
+     }
    }

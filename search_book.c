@@ -17,7 +17,7 @@
     scanf("%[^\n]",bg);
 
     while(fgets(buf, sizeof(buf), ptr)){
-      if(sscanf(buf,"Id:%d|Name:%[^|]|Author:%[^|]|Genre:%[^|]|Copies:%d",&b.id, b.name, b.author, b.genre, &b.cpy) != 5){
+      if(sscanf(buf, "Id:%d|Name:%[^|]|Author:%[^|]|Genre:%[^|]|Copies:%d",&b.id, b.name, b.author, b.genre, &b.cpy) != 5){
         continue;
       }
       if(strstr(b.name, bg)||strstr(b.genre, bg)){
