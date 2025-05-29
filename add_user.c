@@ -21,7 +21,7 @@
     printf("Enter User number: ");
     scanf("%d",&u.number);
 
-    fprintf(file,"%d %s %s %d\n",u.id, u.user_name, u.email, u.number);
+    fprintf(file, "%d %s %s %d\n",u.id, u.user_name, u.email, u.number);
 
     fclose(file);
     printf("User added successfully.....\n");

@@ -1,4 +1,5 @@
 # include <stdio.h>
+# include <stdlib.h>
 # include "myfunctions.h"
  
 typedef enum {
@@ -10,7 +11,7 @@ typedef enum {
    Search_book,
    Remove_user,
    Search_user,
-   exit
+   exit_program
 }MenueChoice;
    book b;
    user u;
@@ -26,6 +27,7 @@ typedef enum {
             printf("\nEnter your choice: ");
             scanf("%d",&choice);
             printf("\n");
+            system("clear");
              
             MenueChoice  menueChoice = (MenueChoice)choice;
 
@@ -46,7 +48,7 @@ typedef enum {
               
                case Search_user: search_user(); break;
               
-               case exit: Exit(); break;
+               case exit_program: Exit(); break;
              
                default: printf("Invalid choice!\n");
             }

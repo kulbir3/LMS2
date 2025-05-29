@@ -10,15 +10,19 @@
     }
     char bg[50];
     int found = 0;
+    char buf[256];
 
     printf("Book/genre to search: ");
     getchar();
     scanf("%[^\n]",bg);
 
-    while(fscanf(ptr,"%d %s %s %s",&b.id,b.name,b.author,b.genre) == 4){
-      if((strcmp(bg,b.name) == 0)||(strcmp(bg,b.genre) == 0)){
+    while(fgets(buf, sizeof(buf), ptr)){
+      if(sscanf(buf,"Id:%d|Name:%[^|]|Author:%[^|]|Genre:%[^|]|Copies:%d",&b.id, b.name, b.author, b.genre, &b.cpy) != 5){
+        continue;
+      }
+      if(strstr(b.name, bg)||strstr(b.genre, bg)){
         printf("Book found!\n");
-        printf("\nID: %d\nName: %s\nAuthor: %s\nGenre: %s\n",b.id,b.name,b.author,b.genre);
+        printf("\nID: %d\nName: %s\nAuthor: %s\nGenre: %s\nCopies: %d\n",b.id, b.name, b.author, b.genre, b.cpy);
         found = 1;
       }
     }

@@ -2,7 +2,7 @@
 # include "myfunctions.h"
 
     void display_info(){
-        char choice;
+        char choice, buf[256];
         printf("Enter b/B to display books or u/U to display users: ");
         scanf(" %c",&choice);
 
@@ -12,8 +12,10 @@
                 printf("Error opening file!");
                 return;
             }
-            while(fscanf(ptr,"%d %s %s %s",&b.id,b.name,b.author,b.genre) != EOF){
+            while(fgets(buf, sizeof(buf), ptr)){
+               if(sscanf(buf,"%d|%[^|]|%[^|]|%[^|]|%d",&b.id, b.name ,b.author, b.genre, &b.cpy) != EOF){
                 printf("ID: %d Name: %s Author: %s Genre: %s Copies: %d\n",b.id, b.name, b.author, b.genre, b.cpy);
+               }
             }
             fclose(ptr);
         }
@@ -23,7 +25,7 @@
                     printf("Error opening file!");
                     return;
                 }
-                while(fscanf(ptr1,"%d %s %s %d",&u.id,u.user_name,u.email,&u.number) != EOF){
+                while(fscanf(ptr1,"%d %s %s %d",&u.id,u.user_name,u.email,&u.number) != EOF){  
                     printf("ID: %d Name: %s Email: %s Number: %d\n",u.id,u.user_name,u.email,u.number);
                
                 }

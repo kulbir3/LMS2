@@ -1,3 +1,2 @@
-2 efgovv ahlehi avivbi 2
-1 skhoiv aeairv ebsirv 5
- 3 hello  hiro  action 5
+Id:1|Name:hello|Author:hori|Genre:action|Copies:3
+Id:2|Name:aot|Author:koiirr|Genre:sifi|Copies:4

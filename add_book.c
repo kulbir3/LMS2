@@ -42,7 +42,7 @@ void add_book(){
      printf("Enter book copies: ");
      scanf("%d",&b.cpy);
 
-     fprintf(ptr," %d %s  %s  %s %d\n",b.id, b.name, b.author, b.genre, b.cpy);
+     fprintf(ptr, "Id:%d|Name:%s|Author:%s|Genre:%s|Copies:%d\n",b.id, b.name, b.author, b.genre, b.cpy);
 
      fclose(ptr);
      printf("\nBook added successfully.....\n");
