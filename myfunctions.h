@@ -8,7 +8,8 @@ typedef struct book{
 
  typedef struct user{
    char user_name[30],email[50];
-   int id, number;
+   int id;
+   long long number;
  }user;
  
    book b;
@@ -25,5 +26,10 @@ typedef struct book{
       void Exit();
       int user_exists(int user_id);
       void get_time(char *buffer, size_t size);
-
+      int regex(const char *pattern, const char *text);
+      int valid_num(const char *numb);
+      int valid_email(const char *em);
+      int valid_name(const char *na);
+      int valid_id(const char *Id);
+      int valid_genre(const char *ge);
       #endif

@@ -1,2 +1,5 @@
-Id:1|Name:hello|Author:ajjfj|Genre:sfkfk|Copies:2
-Id:2|Name:ahfalhh|Author:ekncecn|Genre:vknrkvr|Copies:4
+Id:1|Name:Aot|Author:Hori|Genre:action sifi|Copies:4
+Id:2|Name:hello|Author:hari|Genre:fantasy sifi|Copies:1
+Id:3|Name:Got|Author:she|Genre:action|Copies:3
+Id:4|Name:math|Author:hel|Genre:education|Copies:50
+Id:6|Name:hels|Author:vbbsvd|Genre:fjjff-jff|Copies:3

@@ -6,17 +6,18 @@ void issue_book() {
     char buffer[50];
     int user_id;
     printf("Enter user id: ");
-    scanf("%d", &user_id);
+    scanf("%d",&user_id);
 
     if (!user_exists(user_id)) {
         printf("User not found.\n");
         return;
     }
+   
     FILE *iss, *temp, *log, *log1;
     int b_id;
     char buf[256];
     printf("\nEnter book id to issue: ");
-    scanf("%d", &b_id);
+    scanf("%d",&b_id);
 
     iss = fopen("Book.txt", "r");
     temp = fopen("temp.txt","w");
@@ -40,7 +41,7 @@ void issue_book() {
             fprintf(temp, "Id:%d|Name:%s|Author:%s|Genre:%s|Copies:%d\n",b.id, b.name, b.author, b.genre, b.cpy);
             fprintf(log, "Id:%d|Name:%s|Author:%s|Genre:%s|UId:%d\n",b.id, b.name, b.author, b.genre, u.id);
             fprintf(log1, "User id: %d Book: %s Issued time: %s\n",u.id, b.name, buffer);
-             printf("Book issue successfully: %s\n", b.name);
+            printf("Book issue successfully: %s\n", b.name);
          }else{
             fprintf(temp, "Id:%d|Name:%s|Author:%s|Genre:%s|Copies:%d\n",b.id, b.name, b.author, b.genre, b.cpy);
            }

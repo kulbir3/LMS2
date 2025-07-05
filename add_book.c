@@ -8,7 +8,7 @@ void add_book(){
    
     ptr1 = fopen("Book.txt","r");
     if(ptr1 == NULL){
-      ptr = fopen("Book.txt","w");
+      ptr1 = fopen("Book.txt","w");
     }
 
      printf("Enter Book Id: ");
@@ -33,14 +33,26 @@ void add_book(){
      printf("Enter Book name: ");
      getchar();
      scanf("%[^\n]",b.name);
+     if(!valid_name(b.name)){
+      printf("Inavlid name!\n");
+      return;
+     }
 
      printf("Enter Author name: ");
      getchar();
      scanf("%[^\n]",b.author);
+     if(!valid_name(b.author)){
+      printf("Invalid name!\n");
+      return;
+     }
 
      printf("Enter Book genre: ");
      getchar();
      scanf("%[^\n]",b.genre);
+     if(!valid_genre(b.genre)){
+      printf("Invalid genre!\n");
+      return;
+     }
 
      printf("Enter book copies: ");
      scanf("%d",&b.cpy);
@@ -48,6 +60,6 @@ void add_book(){
      fprintf(ptr, "Id:%d|Name:%s|Author:%s|Genre:%s|Copies:%d\n",b.id, b.name, b.author, b.genre, b.cpy);
 
      fclose(ptr);
-     printf("\nBook added successfully.....\n");
+     printf("\nBook named %s added successfully.....\n",b.name);
 
      }

@@ -15,10 +15,10 @@
     scanf("%d",&id1);
 
     while(fgets(buf, sizeof(buf), ptr)){
-      if(sscanf(buf, "Id:%d|Name:%[^|]|Email:%[^|]|Number:%d",&u.id,u.user_name,u.email,&u.number) == 4){
+      if(sscanf(buf, "Id:%d|Name:%[^|]|Email:%[^|]|Number:%lld",&u.id,u.user_name,u.email,&u.number) == 4){
       if(id1 == u.id){
         printf("User found!\n");
-        printf("ID: %d\nName: %s\nEmail: %s\nNumber: %d\n",u.id,u.user_name,u.email,u.number);
+        printf("ID: %d\nName: %s\nEmail: %s\nNumber: %lld\nBook:%s\n",u.id,u.user_name,u.email,u.number, b.name);
         found = 1;
         break;
       }

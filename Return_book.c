@@ -29,6 +29,14 @@ void return_book() {
          }
      }
  }
+
+  if (found) {
+        fprintf(log, "User id: %d Book: %s Return time: %s\n", u.id, b.name, buffer);
+        printf("Book named %s returned successfully!\n",b.name);
+    } else {
+        printf("Book ID %d not found in issue_log.\n", id1);
+    }
+
     while(fgets(buf, sizeof(buf), ret)){
        if(sscanf(buf, "Id:%d|Name:%[^|]|Author:%[^|]|Genre:%[^|]|Copies:%d", &b.id, b.name, b.author, b.genre, &b.cpy) == 5){
         if(id1 == b.id && found){
@@ -39,12 +47,6 @@ void return_book() {
 
  } 
 
-    if (found) {
-        fprintf(log, "User id: %d Book: %s Return time: %s\n", u.id, b.name, buffer);
-        printf("Book returned successfully!\n");
-    } else {
-        printf("Book ID %d not found in issue_log.\n", id1);
-    }
 
     fclose(iss);
     fclose(ret);
