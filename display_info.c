@@ -13,8 +13,8 @@
                 return;
             }
             while(fgets(buf, sizeof(buf), ptr)){
-               if(sscanf(buf, "Id:%d|Name:%[^|]|Author:%[^|]|Genre:%[^|]|Copies:%d",&b.id, b.name ,b.author, b.genre, &b.cpy) != EOF){
-                printf("ID:%d Name:%s Author:%s Genre:%s Copies:%d\n",b.id, b.name, b.author, b.genre, b.cpy);
+               if(sscanf(buf, "Id:%[^|]|Name:%[^|]|Author:%[^|]|Genre:%[^|]|Copies:%d",b.id, b.name ,b.author, b.genre, &b.cpy) != EOF){
+                printf("ID:%s Name:%s Author:%s Genre:%s Copies:%d\n",b.id, b.name, b.author, b.genre, b.cpy);
                }
             }
             fclose(ptr);
@@ -27,12 +27,12 @@
                     return;
                 }
                 while(fgets(buf, sizeof(buf), ptr1)){  
-                    if(sscanf(buf, "Id:%d|Name:%[^|]|Email:%[^|]|Number:%lld",&u.id,u.user_name,u.email,&u.number) != EOF){
-                    printf("ID: %d Name: %s Email: %s Number: %lld\n",u.id,u.user_name,u.email,u.number);
+                    if(sscanf(buf, "Id:%[^|]|Name:%[^|]|Email:%[^|]|Number:%lld",u.id,u.user_name,u.email,&u.number) == 4){
+                    printf("ID:%s Name:%s Email:%s Number:%lld\n",u.id, u.user_name, u.email, u.number);
                
                 }
-                fclose(ptr1);
              }
+             fclose(ptr1);
             }
             else{
                 printf("Invalid choice!\n");

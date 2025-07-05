@@ -17,12 +17,12 @@
     scanf("%[^\n]",bg);
 
     while(fgets(buf, sizeof(buf), ptr)){
-      if(sscanf(buf, "Id:%d|Name:%[^|]|Author:%[^|]|Genre:%[^|]|Copies:%d",&b.id, b.name, b.author, b.genre, &b.cpy) != 5){
+      if(sscanf(buf, "Id:%[^|]|Name:%[^|]|Author:%[^|]|Genre:%[^|]|Copies:%d",b.id, b.name, b.author, b.genre, &b.cpy) != 5){
         continue;
       }
       if(strstr(b.name, bg)||strstr(b.genre, bg)){
         printf("Book found!\n");
-        printf("\nID: %d\nName: %s\nAuthor: %s\nGenre: %s\nCopies: %d\n",b.id, b.name, b.author, b.genre, b.cpy);
+        printf("\nID: %s\nName: %s\nAuthor: %s\nGenre: %s\nCopies: %d\n",b.id, b.name, b.author, b.genre, b.cpy);
         found = 1;
       }
     }

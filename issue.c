@@ -1,12 +1,13 @@
-#include <stdio.h>
-#include <string.h>
-#include "myfunctions.h"
+# include <stdio.h>
+# include <string.h>
+# include "myfunctions.h"
 
 void issue_book() {
     char buffer[50];
-    int user_id;
+    char user_id[20];
     printf("Enter user id: ");
-    scanf("%d",&user_id);
+    getchar();
+    scanf("%[^\n]",user_id);
 
     if (!user_exists(user_id)) {
         printf("User not found.\n");
@@ -14,10 +15,11 @@ void issue_book() {
     }
    
     FILE *iss, *temp, *log, *log1;
-    int b_id;
+    char b_id[20];
     char buf[256];
     printf("\nEnter book id to issue: ");
-    scanf("%d",&b_id);
+    getchar();
+    scanf("%[^\n]",b_id);
 
     iss = fopen("Book.txt", "r");
     temp = fopen("temp.txt","w");
@@ -33,17 +35,17 @@ void issue_book() {
     get_time(buffer, sizeof(buffer));
 
        while (fgets(buf, sizeof(buf), iss)){
-       if(sscanf(buf, "Id:%d|Name:%[^|]|Author:%[^|]|Genre:%[^|]|Copies:%d", &b.id, b.name, b.author, b.genre, &b.cpy) == 5){
-        if (b.id == b_id && b.cpy > 0){
+       if(sscanf(buf, "Id:%[^|]|Name:%[^|]|Author:%[^|]|Genre:%[^|]|Copies:%d", b.id, b.name, b.author, b.genre, &b.cpy) == 5){
+        if (strcmp(b.id, b_id)==0 && b.cpy > 0){
 
             found = 1;
             b.cpy--;
-            fprintf(temp, "Id:%d|Name:%s|Author:%s|Genre:%s|Copies:%d\n",b.id, b.name, b.author, b.genre, b.cpy);
-            fprintf(log, "Id:%d|Name:%s|Author:%s|Genre:%s|UId:%d\n",b.id, b.name, b.author, b.genre, u.id);
-            fprintf(log1, "User id: %d Book: %s Issued time: %s\n",u.id, b.name, buffer);
+            fprintf(temp, "Id:%s|Name:%s|Author:%s|Genre:%s|Copies:%d\n",b.id, b.name, b.author, b.genre, b.cpy);
+            fprintf(log, "Id:%s|Name:%s|Author:%s|Genre:%s|UId:%s\n",b.id, b.name, b.author, b.genre, u.id);
+            fprintf(log1, "User id: %s Book: %s Issued time: %s\n",u.id, b.name, buffer);
             printf("Book issue successfully: %s\n", b.name);
          }else{
-            fprintf(temp, "Id:%d|Name:%s|Author:%s|Genre:%s|Copies:%d\n",b.id, b.name, b.author, b.genre, b.cpy);
+            fprintf(temp, "Id:%s|Name:%s|Author:%s|Genre:%s|Copies:%d\n",b.id, b.name, b.author, b.genre, b.cpy);
            }
         }
     }
